@@ -1,6 +1,6 @@
 {
   "name": "xd60",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Configs and tools for my XD60 keyboard",
   "bin": {
     "xd60": "cli.js"
