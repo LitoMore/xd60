@@ -2,7 +2,7 @@
 
 Configs and tools for my XD60 keyboard
 
-## Denpendency
+## Dependency
 
 - [dfu-programmer](https://github.com/dfu-programmer/dfu-programmer)
 
