@@ -42,5 +42,5 @@ if (cli.input.length > 0) {
       break
   }
 } else {
-  pinner.fail('Command required')
+  spinner.fail('Command required')
 }
