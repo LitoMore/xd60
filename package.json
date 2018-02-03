@@ -3,10 +3,11 @@
   "version": "0.2.0",
   "description": "Configs and tools for my XD60 keyboard",
   "bin": {
-    "xd60": "cli.js"
+    "kdb": "cli.js"
   },
   "scripts": {
-    "test": "standard"
+    "test": "standard",
+    "kbd": "cli.js"
   },
   "repository": "git@github.com:LitoMore/xd60.git",
   "author": "LitoMore <litomore@gmail.com>",
