@@ -11,8 +11,10 @@ const spinner = ora('')
 
 const cli = meow(`
   Usage:
-    $ xd60 reflash
-    $ xd60 reflash <file>
+    $ kbd reflash
+    $ kbd reflash <file>
+    $ kbd auto
+    $ kbd auto <file>
 `)
 let firmwarePath = path.join(__dirname, 'XD60.hex')
 
