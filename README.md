@@ -9,8 +9,8 @@ Configs and tools for my XD60 keyboard
 ## Commands
 
 ```bash
-$ kbd reflash          # Reflash with XD60.hex file
-$ kbd reflash <path>   # Reflash with another HEX file
+$ kbd reflash [file]   # Reflash now
+$ kbd auto [file]      # Reflash with waiting for device
 ```
 
 ## License

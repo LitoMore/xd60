@@ -5,8 +5,9 @@ const path = require('path')
 const meow = require('meow')
 const ora = require('ora')
 const execa = require('execa')
+const usb = require('usb')
 
-const spinner = ora('Reflashing')
+const spinner = ora('')
 
 const cli = meow(`
   Usage:
@@ -30,12 +31,28 @@ const reflash = async firmwarePath => {
   }
 }
 
+const auto = firmwarePath => {
+  spinner.start()
+  spinner.text = 'Waiting for XD60'
+  usb.on('attach', () => {
+    execa('dfu-programmer', ['atmega32u4', 'get']).then(async () => {
+      await reflash(firmwarePath)
+      usb.removeAllListeners()
+    })
+  })
+}
+
 if (cli.input.length > 0) {
   const command = cli.input[0]
+
+  if (cli.input[1]) firmwarePath = cli.input[1]
+
   switch (command) {
     case 'reflash':
-      if (cli.input[1]) firmwarePath = cli.input[1]
       reflash(firmwarePath)
+      break
+    case 'auto':
+      auto(firmwarePath)
       break
     default:
       spinner.fail('Invalid command')
