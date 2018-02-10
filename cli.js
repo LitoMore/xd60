@@ -61,5 +61,5 @@ if (cli.input.length > 0) {
       break
   }
 } else {
-  spinner.fail('Command required')
+  cli.showHelp()
 }
