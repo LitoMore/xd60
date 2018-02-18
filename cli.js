@@ -42,6 +42,10 @@ const auto = firmwarePath => {
       usb.removeAllListeners()
     })
   })
+  setTimeout(() => {
+    usb.removeAllListeners()
+    spinner.fail('No device present')
+  }, 15000)
 }
 
 if (cli.input.length > 0) {
