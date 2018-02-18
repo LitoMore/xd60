@@ -36,16 +36,19 @@ const reflash = async firmwarePath => {
 const auto = firmwarePath => {
   spinner.start()
   spinner.text = 'Waiting for XD60'
+
+  const autoClose = setTimeout(() => {
+    usb.removeAllListeners()
+    spinner.fail('No device present')
+  }, 15000)
+
   usb.on('attach', () => {
     execa('dfu-programmer', ['atmega32u4', 'get']).then(async () => {
+      clearTimeout(autoClose)
       await reflash(firmwarePath)
       usb.removeAllListeners()
     })
   })
-  setTimeout(() => {
-    usb.removeAllListeners()
-    spinner.fail('No device present')
-  }, 15000)
 }
 
 if (cli.input.length > 0) {
