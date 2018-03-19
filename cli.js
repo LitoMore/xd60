@@ -30,6 +30,7 @@ const reflash = async firmwarePath => {
     spinner.succeed('Done')
   } catch (err) {
     spinner.fail(err.stderr.trim())
+    process.exit(1)
   }
 }
 
@@ -40,6 +41,7 @@ const auto = firmwarePath => {
   const autoClose = setTimeout(() => {
     usb.removeAllListeners()
     spinner.fail('No device present')
+    process.exit(1)
   }, 15000)
 
   usb.on('attach', () => {
@@ -65,8 +67,9 @@ if (cli.input.length > 0) {
       break
     default:
       spinner.fail('Invalid command')
-      break
+      process.exit(1)
   }
 } else {
   cli.showHelp()
+  process.exit(1)
 }
