@@ -2,10 +2,12 @@
 'use strict'
 
 const path = require('path')
-const meow = require('meow')
-const ora = require('ora')
-const execa = require('execa')
-const usb = require('usb')
+const importLazy = require('import-lazy')(require)
+
+const meow = importLazy('meow')
+const ora = importLazy('ora')
+const execa = importLazy('execa')
+const usb = importLazy('usb')
 
 const spinner = ora('')
 
