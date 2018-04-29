@@ -28,6 +28,7 @@ const reflash = async firmwarePath => {
     spinner.text = 'Flashing'
     await execa('dfu-programmer', ['atmega32u4', 'flash', firmwarePath])
     spinner.text = 'Reseting'
+    usb.removeAllListeners()
     await execa('dfu-programmer', ['atmega32u4', 'reset'])
     spinner.succeed('Done')
   } catch (err) {
@@ -50,7 +51,6 @@ const auto = firmwarePath => {
     execa('dfu-programmer', ['atmega32u4', 'get']).then(async () => {
       clearTimeout(autoClose)
       await reflash(firmwarePath)
-      usb.removeAllListeners()
     })
   })
 }
