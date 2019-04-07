@@ -6,6 +6,15 @@ Configs and tools for my XD60 keyboard
 
 - [dfu-programmer](https://github.com/dfu-programmer/dfu-programmer)
 
+## Install
+
+```bash
+$ git clone git@github.com:LitoMore/xd60.git
+$ cd xd60
+$ npm i
+$ npm link
+```
+
 ## Commands
 
 ```bash
