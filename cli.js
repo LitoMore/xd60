@@ -47,11 +47,10 @@ const auto = firmwarePath => {
 		process.exit(1);
 	}, 15000);
 
-	usb.on('attach', () => {
-		execa('dfu-programmer', ['atmega32u4', 'get']).then(async () => {
-			clearTimeout(autoClose);
-			await reflash(firmwarePath);
-		});
+	usb.on('attach', async () => {
+		await execa('dfu-programmer', ['atmega32u4', 'get']);
+		clearTimeout(autoClose);
+		await reflash(firmwarePath);
 	});
 };
 
