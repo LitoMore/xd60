@@ -1,6 +1,6 @@
 # XD60
 
-Configs and tools for my XD60 keyboard
+Configs and tools for my XD60 (atmega32u4) keyboard
 
 ## Dependency
 
