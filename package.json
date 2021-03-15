@@ -9,7 +9,7 @@
     "test": "xo"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=12"
   },
   "repository": "git@github.com:LitoMore/xd60.git",
   "author": "LitoMore <litomore@gmail.com>",
