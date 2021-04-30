@@ -1,14 +1,12 @@
 #!/usr/bin/env node
-'use strict';
+import {dirname, join} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import meow from 'meow';
+import ora from 'ora';
+import execa from 'execa';
+import usb from 'usb';
 
-const path = require('path');
-const importLazy = require('import-lazy')(require);
-
-const meow = importLazy('meow');
-const ora = importLazy('ora');
-const execa = importLazy('execa');
-const usb = importLazy('usb');
-
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const spinner = ora('');
 
 const cli = meow(`
@@ -18,7 +16,7 @@ const cli = meow(`
     $ kbd auto
     $ kbd auto <file>
 `);
-let firmwarePath = path.join(__dirname, 'XD60.hex');
+let firmwarePath = join(__dirname, 'XD60.hex');
 
 const reflash = async firmwarePath => {
 	try {
@@ -32,7 +30,7 @@ const reflash = async firmwarePath => {
 		await execa('dfu-programmer', ['atmega32u4', 'reset']);
 		spinner.succeed('Done');
 	} catch (error) {
-		spinner.fail(error.stderr.trim());
+		spinner.fail(error.stderr.trim() || error.message);
 		process.exit(1);
 	}
 };
