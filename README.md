@@ -12,6 +12,7 @@ Configs and tools for my XD60 (atmega32u4) keyboard
 $ git clone git@github.com:LitoMore/xd60.git
 $ cd xd60
 $ npm i
+$ npm run build
 $ npm link
 ```
 

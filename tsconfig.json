@@ -1,0 +1,10 @@
+{
+	"extends": "@sindresorhus/tsconfig",
+	"moduleResolution": "node",
+	"compilerOptions": {
+		"module": "esnext",
+		"esModuleInterop": true,
+		"outDir": "dist"
+	},
+	"include": ["source"]
+}

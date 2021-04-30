@@ -18,7 +18,7 @@ const cli = meow(`
 `);
 let firmwarePath = join(__dirname, 'XD60.hex');
 
-const reflash = async firmwarePath => {
+const reflash = async (firmwarePath: string) => {
 	try {
 		spinner.start();
 		spinner.text = 'Erasing';
@@ -26,20 +26,23 @@ const reflash = async firmwarePath => {
 		spinner.text = 'Flashing';
 		await execa('dfu-programmer', ['atmega32u4', 'flash', firmwarePath]);
 		spinner.text = 'Reseting';
+		// @ts-expect-error
 		usb.removeAllListeners();
 		await execa('dfu-programmer', ['atmega32u4', 'reset']);
 		spinner.succeed('Done');
+	// eslint-disable-next-line @typescript-eslint/no-implicit-any-catch
 	} catch (error) {
 		spinner.fail(error.stderr.trim() || error.message);
 		process.exit(1);
 	}
 };
 
-const auto = firmwarePath => {
+const auto = (firmwarePath: string) => {
 	spinner.start();
 	spinner.text = 'Waiting for XD60';
 
 	const autoClose = setTimeout(() => {
+		// @ts-expect-error
 		usb.removeAllListeners();
 		spinner.fail('No device present');
 		process.exit(1);
@@ -61,7 +64,7 @@ if (cli.input.length > 0) {
 
 	switch (command) {
 		case 'reflash':
-			reflash(firmwarePath);
+			await reflash(firmwarePath);
 			break;
 		case 'auto':
 			auto(firmwarePath);
