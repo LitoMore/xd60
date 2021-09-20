@@ -1,6 +1,8 @@
 #!/usr/bin/env node
+/* eslint @typescript-eslint/no-unsafe-call: off, @typescript-eslint/no-unsafe-member-access: off, @typescript-eslint/no-implicit-any-catch: off */
 import {dirname, join} from 'node:path';
 import {fileURLToPath} from 'node:url';
+import process from 'node:process';
 import meow from 'meow';
 import ora from 'ora';
 import execa from 'execa';
@@ -9,13 +11,18 @@ import usb from 'usb';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const spinner = ora('');
 
-const cli = meow(`
+const cli = meow(
+	`
   Usage:
     $ kbd reflash
     $ kbd reflash <file>
     $ kbd auto
     $ kbd auto <file>
-`);
+`,
+	{
+		importMeta: import.meta,
+	},
+);
 let firmwarePath = join(__dirname, 'XD60.hex');
 
 const reflash = async (firmwarePath: string) => {
@@ -26,12 +33,11 @@ const reflash = async (firmwarePath: string) => {
 		spinner.text = 'Flashing';
 		await execa('dfu-programmer', ['atmega32u4', 'flash', firmwarePath]);
 		spinner.text = 'Reseting';
-		// @ts-expect-error
+		// @ts-expect-error: Expected call
 		usb.removeAllListeners();
 		await execa('dfu-programmer', ['atmega32u4', 'reset']);
 		spinner.succeed('Done');
-	// eslint-disable-next-line @typescript-eslint/no-implicit-any-catch
-	} catch (error) {
+	} catch (error: any) {
 		spinner.fail(error.stderr.trim() || error.message);
 		process.exit(1);
 	}
@@ -42,11 +48,11 @@ const auto = (firmwarePath: string) => {
 	spinner.text = 'Waiting for XD60';
 
 	const autoClose = setTimeout(() => {
-		// @ts-expect-error
+		// @ts-expect-error: Expected call
 		usb.removeAllListeners();
 		spinner.fail('No device present');
 		process.exit(1);
-	}, 15000);
+	}, 15_000);
 
 	usb.on('attach', async () => {
 		await execa('dfu-programmer', ['atmega32u4', 'get']);
