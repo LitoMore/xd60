@@ -5,8 +5,11 @@ import {fileURLToPath} from 'node:url';
 import process from 'node:process';
 import meow from 'meow';
 import ora from 'ora';
-import execa from 'execa';
+import execa, {ExecaError} from 'execa';
 import usb from 'usb';
+
+type ReflashFunc = (firmwarePath: string) => Promise<void>;
+type AutoFunc = (firmwarePath: string) => void;
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const spinner = ora('');
@@ -26,7 +29,7 @@ const cli = meow(
 
 let firmwarePath = join(__dirname, '../keymaps', 'mac.hex');
 
-const reflash = async (firmwarePath: string) => {
+const reflash: ReflashFunc = async (firmwarePath) => {
 	try {
 		spinner.start();
 		spinner.text = 'Erasing';
@@ -39,12 +42,14 @@ const reflash = async (firmwarePath: string) => {
 		await execa('dfu-programmer', ['atmega32u4', 'reset']);
 		spinner.succeed('Done');
 	} catch (error: any) {
-		spinner.fail(error.stderr.trim() || error.message);
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+		const execaError: ExecaError = error;
+		spinner.fail(execaError.stderr.trim() || execaError.message);
 		process.exit(1);
 	}
 };
 
-const auto = (firmwarePath: string) => {
+const auto: AutoFunc = (firmwarePath) => {
 	spinner.start();
 	spinner.text = 'Waiting for XD60';
 
