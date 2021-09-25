@@ -23,7 +23,8 @@ const cli = meow(
 		importMeta: import.meta,
 	},
 );
-let firmwarePath = join(__dirname, 'XD60.hex');
+
+let firmwarePath = join(__dirname, '../keymaps', 'mac.hex');
 
 const reflash = async (firmwarePath: string) => {
 	try {
