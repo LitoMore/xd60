@@ -2,7 +2,7 @@
 
 Configs and tools for my XD60 (atmega32u4) keyboard
 
-## Dependency
+## Requirement
 
 - [dfu-programmer](https://github.com/dfu-programmer/dfu-programmer)
 
