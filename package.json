@@ -3,12 +3,12 @@
   "version": "0.7.0",
   "description": "Configs and tools for my XD60 keyboard",
   "type": "module",
-  "exports": "./dist/index.js",
+  "exports": "./dist/cli.js",
   "bin": {
-    "kbd": "./dist/index.js"
+    "kbd": "./dist/cli.js"
   },
   "scripts": {
-    "build": "tsc && chmod +x dist/index.js",
+    "build": "tsc && chmod +x dist/cli.js",
     "test": "xo"
   },
   "engines": {
