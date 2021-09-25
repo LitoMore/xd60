@@ -1,8 +1,9 @@
 /* eslint
-	unicorn/no-process-exit:off,
+	unicorn/no-process-exit: off,
 	@typescript-eslint/no-unsafe-call: off,
 	@typescript-eslint/no-unsafe-member-access: off,
-	@typescript-eslint/no-implicit-any-catch: off */
+	@typescript-eslint/no-implicit-any-catch: off
+*/
 import process from 'node:process';
 import {Ora} from 'ora';
 import execa, {ExecaError} from 'execa';

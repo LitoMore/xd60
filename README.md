@@ -9,20 +9,27 @@ Configs and tools for my XD60 (atmega32u4) keyboard
 ## Install
 
 ```bash
-$ git clone git@github.com:LitoMore/xd60.git
-$ cd xd60
-$ npm i
-$ npm run build
-$ npm link
+git clone git@github.com:LitoMore/xd60.git
+cd xd60
+npm i
+npm run build
+npm link
 ```
 
 ## Commands
 
-```bash
-$ kbd reflash [file]   # Reflash now
-$ kbd auto [file]      # Reflash with waiting for device
+### Reflash immediately
+
+```sh
+kbd reflash [file]
+```
+
+### Reflash when device is ready
+
+```sh
+kbd auto [file]
 ```
 
 ## License
 
-MIT © [LitoMore](https://github.com/LitoMore)
+MIT
