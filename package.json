@@ -12,7 +12,7 @@
     "test": "xo"
   },
   "engines": {
-    "node": ">=12.17"
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   },
   "repository": "git@github.com:LitoMore/xd60.git",
   "author": "LitoMore <litomore@gmail.com>",
