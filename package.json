@@ -8,7 +8,7 @@
     "kbd": "./dist/cli.js"
   },
   "scripts": {
-    "build": "tsc && chmod +x dist/cli.js",
+    "build": "del-cli distribution && tsc && chmod +x distribution/cli.js",
     "test": "xo"
   },
   "engines": {
@@ -24,10 +24,12 @@
   },
   "devDependencies": {
     "@sindresorhus/tsconfig": "^2.0.0",
-    "@types/usb": "^1.5.2",
+    "@types/node": "^16.10.3",
+    "@types/usb": "^1.5.3",
+    "del-cli": "^4.0.1",
     "meow": "^10.1.1",
-    "typescript": "^4.2.4",
-    "xo": "^0.44.0"
+    "typescript": "^4.4.3",
+    "xo": "^0.45.0"
   },
   "xo": {
     "prettier": true
