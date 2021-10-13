@@ -1,6 +1,6 @@
 {
   "name": "xd60",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "description": "Configs and tools for my XD60 keyboard",
   "type": "module",
   "exports": "./distribution/cli.js",
