@@ -21,13 +21,13 @@ npm link
 ### Reflash immediately
 
 ```sh
-kbd reflash [file]
+xd60 reflash [file]
 ```
 
 ### Reflash when device is ready
 
 ```sh
-kbd auto [file]
+xd60 auto [file]
 ```
 
 ## License

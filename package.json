@@ -4,9 +4,7 @@
   "description": "Configs and tools for my XD60 keyboard",
   "type": "module",
   "exports": "./distribution/cli.js",
-  "bin": {
-    "kbd": "./distribution/cli.js"
-  },
+  "bin": "./distribution/cli.js",
   "scripts": {
     "build": "del-cli distribution && tsc && chmod +x distribution/cli.js",
     "test": "xo"

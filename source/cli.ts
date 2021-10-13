@@ -14,10 +14,10 @@ let firmwarePath = join(__dirname, '../keymaps', 'mac.hex');
 const cli = meow(
 	`
   Usage:
-    $ kbd reflash
-    $ kbd reflash <file>
-    $ kbd auto
-    $ kbd auto <file>
+    $ xd60 reflash
+    $ xd60 reflash <file>
+    $ xd60 auto
+    $ xd60 auto <file>
 `,
 	{
 		importMeta: import.meta,
