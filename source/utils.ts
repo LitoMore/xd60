@@ -1,12 +1,10 @@
 /* eslint
 	unicorn/no-process-exit: off,
-	@typescript-eslint/no-unsafe-call: off,
-	@typescript-eslint/no-unsafe-member-access: off,
 	@typescript-eslint/no-implicit-any-catch: off
 */
 import process from 'node:process';
 import {Ora} from 'ora';
-import execa, {ExecaError} from 'execa';
+import {execa, ExecaError} from 'execa';
 import usb from 'usb';
 
 export type ReflashFunc = (spinner: Ora, firmwarePath: string) => Promise<void>;
@@ -20,7 +18,6 @@ export const reflash: ReflashFunc = async (spinner, firmwarePath) => {
 		spinner.text = 'Flashing';
 		await execa('dfu-programmer', ['atmega32u4', 'flash', firmwarePath]);
 		spinner.text = 'Reseting';
-		// @ts-expect-error: Expected call
 		usb.removeAllListeners();
 		await execa('dfu-programmer', ['atmega32u4', 'reset']);
 		spinner.succeed('Done');
@@ -37,7 +34,6 @@ export const autoReflash: AutoReflashFunc = (spinner, firmwarePath) => {
 	spinner.text = 'Waiting for XD60';
 
 	const autoClose = setTimeout(() => {
-		// @ts-expect-error: Expected call
 		usb.removeAllListeners();
 		spinner.fail('No device present');
 		process.exit(1);
